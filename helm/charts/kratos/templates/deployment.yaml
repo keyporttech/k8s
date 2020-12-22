@@ -43,11 +43,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["kratos"]
-          args: ["migrate", "sql", "-e", "--yes", "--config", "/etc/config/config.yaml"]
+          args: ["migrate", "sql", "-e", "--yes", "--config", "/home/ory/config/config.yaml"]
           volumeMounts:
             -
               name: {{ include "kratos.name" . }}-config-volume
-              mountPath: /etc/config
+              mountPath: /home/ory/config
               readOnly: true
           env:
             -
@@ -86,12 +86,12 @@ spec:
             "--dev",
             {{- end}}
             "--config",
-            "/etc/config/config.yaml"
+            "/home/ory/config/config.yaml"
           ]
           volumeMounts:
             -
               name: {{ include "kratos.name" . }}-config-volume
-              mountPath: /etc/config
+              mountPath: /home/ory/config
               readOnly: true
           env:
             -
